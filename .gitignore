@@ -1,75 +1,29 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+#include <iostream>
+#include <fstream>
 
-# Precompiled Headers
-*.gch
-*.pch
+using namespace std;
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# =========================
-# Operating System Files
-# =========================
-
-# OSX
-# =========================
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Thumbnails
-._*
-
-# Files that might appear on external disk
-.Spotlight-V100
-.Trashes
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-# Windows
-# =========================
-
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Folder config file
-Desktop.ini
-
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
-
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
-
-# Windows shortcuts
-*.lnk
+struct equipo{
+	char* nombre; 
+	int edad;
+};
+	
+	int main (){
+		equipo es1;  
+		es1.nombre="Abner V";
+		ofstream fs("nombre.txt.", ios::binary | ios::app);
+		fs.write ((char*)&es1, sizeof(struct equipo));
+		fs.close();
+		
+		cout <<"hola" << endl;
+		
+		ifstream input("nombre.txt", ios::binary);
+		equipo aux;
+		input.read((char*) &aux, sizeof (struct equipo));
+		
+		cout << aux.nombre << endl;
+		cout << aux.edad << endl;
+		
+		input.close();
+		return 0;
+	}
